@@ -16,7 +16,7 @@ def id_check(id):
         return (False,error_message)
     sum=0
     for x in range(0,10):
-        sum+int(id[x])
+        sum+=int(id[x])
     if((sum%10)!=int(id[10])):#mod10 of sum of first 10 elements needs to be equal to 11th element
         error_message="5th math protocol failed, ID not valid"
         return (False,error_message)
