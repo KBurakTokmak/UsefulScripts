@@ -5,7 +5,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY']='zlwxX9sLltxof4paskT6/W0rIKor4dFmEWIClyCw9PzPzLVBbkN9ZByxRe50hmLC'
 @app.route('/')
 def home():
-    return "This is the homepage"
+    return "This is the homepage, goto /valid_id"
 
 @app.route('/valid_id',methods=["GET","POST"])
 def valid_id():
@@ -13,8 +13,10 @@ def valid_id():
     if form.is_submitted():
         result=request.form.getlist("id")
         check=id_check(result[0])
-        
-        return render_template("result.html",valid=check[0],message=check[1])
+        if check[0]:
+            return render_template("result.html",valid="You have submitted a valid ID")
+        else:
+            return render_template("result.html",message=check[1])
     return render_template("valid_id.html",form=form)
 
 
@@ -22,11 +24,3 @@ def valid_id():
 if __name__ == "__main__":
     app.run()
 
-
-
-id="12345678950"
-check=id_check(id)
-if(check[0]):
-    print("Valid ID")
-else:
-    print(check[1])
