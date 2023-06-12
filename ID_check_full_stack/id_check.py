@@ -6,7 +6,7 @@ def id_check(id):
     if(len(id)!=11):#id needs to be 11 numbers
         error_message="ID is not 11 Digits"
         return (False,error_message)
-    if(int(id[0]==0)):#first element cant be 0
+    if(int(id[0])==0):#first element cant be 0
         error_message="First number of id cant be 0(zero)"
         return (False,error_message)
     check=(int(id[0])+int(id[2])+int(id[4])+int(id[6])+int(id[8]))*7-(int(id[1])+int(id[3])+int(id[5])+int(id[7]))
